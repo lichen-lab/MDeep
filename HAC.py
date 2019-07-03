@@ -3,8 +3,6 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 from matplotlib import pyplot as plt
 
 
-
-
 def hac(cor):
 
     def mydist(p1, p2):
@@ -30,5 +28,5 @@ def hac(cor):
     return index
 
 if __name__ == '__main__':
-    c = np.load("./data/Malawiantwin_pairs/c.npy")
+    c = np.load("data/Malawiantwin_pairs/c.npy")
     hac(c)
