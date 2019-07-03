@@ -11,7 +11,9 @@ We develop a deep learning prediction method "Phylogeny-regularized convolutiona
 
 ## Example
 ### USA Human Gut Microbiome data
-
+```
+ python3 pCNN_conitnous.py data/USA
+```
 
 ### Malawiantwin pairs Human Gut Microbiome data
 
