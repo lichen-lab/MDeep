@@ -3,7 +3,7 @@ We develop a deep learning prediction method "Phylogeny-regularized convolutiona
 
 <center>
 
-![Figure](https://github.com/alfredyewang/pCNN/blob/master/docs/Architecture.jpg?raw=true =800x600)
+![Figure](https://github.com/alfredyewang/pCNN/blob/master/docs/Architecture.jpg? =800x600)
 
 </center>  
 
