@@ -5,7 +5,7 @@ We develop a deep learning prediction method "Phylogeny-regularized convolutiona
 
 <img src="https://raw.githubusercontent.com/alfredyewang/pCNN/master/docs/Architecture.jpg" width="600" height="400">
 
-<div align=center><img width="150" height="150" src="https://raw.githubusercontent.com/alfredyewang/pCNN/master/docs/Architecture.jpg"/></div>
+<div align=center><img width="600" height="400" src="https://raw.githubusercontent.com/alfredyewang/pCNN/master/docs/Architecture.jpg"/></div>
 </center>  
 
 For details of pCNN, users can refer to our paper "**A Phylogeny-regularized Convolutional NeuralNetwork for Microbiome-based Predictionsn**".
