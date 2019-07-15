@@ -2,8 +2,10 @@
 We develop a deep learning prediction method "Phylogeny-regularized convolutional Neural Network,"(pCNN) for microbiome-based prediction. The advantage of pCNN is that it uses the convolutional kernel to capture the signals of microbiome species with close evolutionary relationship in a local receptive field. Moreover, pCNN uses different convolutional layer to capture different taxonomic rank (e.g. species, genus, family, etc). Together, the convolutional layers with its built-in convolutional kernels capture microbiome signals at different taxonomic levels while encouraging local smoothing induced by the phylogenetic tree.
 
 <center>
+
 <img src="https://raw.githubusercontent.com/alfredyewang/pCNN/master/docs/Architecture.jpg" width="600" height="400">
 
+<div align=center><img width="150" height="150" src="https://raw.githubusercontent.com/alfredyewang/pCNN/master/docs/Architecture.jpg"/></div>
 </center>  
 
 For details of pCNN, users can refer to our paper "**A Phylogeny-regularized Convolutional NeuralNetwork for Microbiome-based Predictionsn**".
