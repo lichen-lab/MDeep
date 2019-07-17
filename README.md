@@ -75,11 +75,11 @@ optional arguments:
 ## Example
 
 #### Train the model based on USA Human Gut Microbiome data (Continous-Outcome)
-The USA Human Gut Microbiome data contains 308 samples with 1087 OTUs. For details of description , users can refer to our paper 
+The USA Human Gut Microbiome data contains 308 samples with 1087 OTUs. For details of description , users can refer to our paper
 ```
 python3 src/pCNN.py --data_dir data/USA --train --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
-#### Test the model 
+#### Test the model
 
 ```
 python3 src/pCNN.py --data_dir data/USA --test --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
@@ -90,5 +90,7 @@ The USA Human Gut Microbiome data contains 995 samples with 2291 OTUs.
 ```
 python3 src/pCNN.py --data_dir data/Malawiantwin_pairs --train --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
 ```
-#### Test the model 
+#### Test the model
+```
 python3 src/pCNN.py --data_dir data/Malawiantwin_pairs --test --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
+```
