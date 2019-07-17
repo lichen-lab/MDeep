@@ -74,7 +74,7 @@ optional arguments:
 
 ## Example
 
-###USA Human Gut Microbiome data (Continous-Outcome)
+### USA Human Gut Microbiome data (Continous-Outcome)
 #### Train the model
 The USA Human Gut Microbiome data contains 308 samples with 1087 OTUs. For details of description , users can refer to our paper
 ```
