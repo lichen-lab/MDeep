@@ -2,7 +2,9 @@ import tensorflow as tf
 from sklearn.utils import shuffle
 import numpy as np
 import HAC
-
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set(color_codes=True)
 import model
 tf.reset_default_graph()
 tf.set_random_seed(1234)
@@ -73,7 +75,7 @@ def train(x_train,y_train,args):
         print("Model saved in path: %s" % save_path)
 
 
-def test(x_test, y_test, args):
+def eval(x_test, y_test, args):
 
     n_classes = 1
     n_features = x_test.shape[1]
@@ -97,3 +99,39 @@ def test(x_test, y_test, args):
         outputs = sess.run(layer, feed_dict={x: x_test, y: y_test, keep_prob: 1})
         cor_test = np.corrcoef(outputs.reshape(y_test.shape[0], ), y_test.reshape(y_test.shape[0], ))
         print("Test loss: {}, Test cor:{}".format(test_loss, cor_test[0, 1]))
+        plt.clf()
+        ax = sns.scatterplot(x =y_test.reshape(y_test.shape[0], ), y = outputs.reshape(y_test.shape[0], ), marker='+')
+
+        x_line = np.linspace(max(min(outputs.reshape(y_test.shape[0], )), min(y_test.reshape(y_test.shape[0], ))),
+                             min(max(outputs.reshape(y_test.shape[0], )), max(y_test.reshape(y_test.shape[0], ))))
+        plt.plot(x_line, x_line)
+        plt.xlabel('Y')
+        plt.ylabel(r'Predicted Y')
+        plt.title(r'Test result on Pretrained pCNN model ($R^2$ = {:.02f})'.format(cor_test[0, 1] ** 2))
+        plt.tight_layout()
+        ax.figure.savefig( args.result_dir + "/result.png")
+        plt.show()
+
+
+def test(x_test, args):
+
+    n_classes = 1
+    n_features = x_test.shape[1]
+
+    x = tf.placeholder(tf.float32, [None, n_features * 1])
+    y = tf.placeholder(tf.float32, [None, n_classes * 1])
+    keep_prob = tf.placeholder(tf.float32)
+
+    x_input = tf.reshape(x, [-1, n_features, 1])
+    layer = model.network_continous(x_input, keep_prob, args)
+
+    with tf.name_scope("loss"):
+        cost = tf.reduce_mean(tf.square(y - layer))
+
+    with tf.Session() as sess:
+
+        sess.run(tf.group(tf.global_variables_initializer(), tf.local_variables_initializer()))
+        saver = tf.train.Saver()
+        saver.restore(sess,  "./{}/model_continous.ckpt".format(args.model_dir))
+        outputs = sess.run(layer, feed_dict={x: x_test, keep_prob: 1})
+        np.savetxt(args.data_dir + '/y_prediction.txt', outputs)

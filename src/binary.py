@@ -2,7 +2,9 @@ import tensorflow as tf
 from sklearn.utils import shuffle
 import numpy as np
 import HAC
-
+from sklearn import metrics
+import matplotlib.pyplot as plt
+import seaborn as sns
 import model
 import argparse
 tf.reset_default_graph()
@@ -71,7 +73,7 @@ def train (x_train,y_train,args):
         print("Model saved in path: %s" % save_path)
 
 
-def test (x_test, y_test, args):
+def eval (x_test, y_test, args):
 
     n_classes = 2
     n_features = x_test.shape[1]
@@ -90,11 +92,51 @@ def test (x_test, y_test, args):
         correct_prediction = tf.equal(tf.argmax(layer, 1), tf.argmax(y, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
+
     with tf.Session() as sess:
 
         sess.run(tf.group(tf.global_variables_initializer(), tf.local_variables_initializer()))
         saver = tf.train.Saver()
         saver.restore(sess, "./{}/model_binary.ckpt".format(args.model_dir))
-        test_accuracy = sess.run(accuracy, feed_dict={x: x_test, y: y_test, keep_prob: 1})
-        print("Test accuracy:{}".format(test_accuracy))
+        outputs = sess.run(layer, feed_dict={x: x_test, y: y_test, keep_prob: 1})
+        print(outputs.shape)
+        plt.clf()
+
+        fpr, tpr, threshold = metrics.roc_curve(y_test[:,1],outputs[:,1])
+        auc = metrics.roc_auc_score(y_test[:,1],outputs[:,1])
+        print(auc)
+        plt.plot(fpr, tpr)
+        plt.plot([0, 1], [0, 1], 'r--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('1-Specificity(False Positive Rate)')
+        plt.ylabel('Sensitivity(True Positive Rate)')
+        plt.title('Receiver Operating Characteristic (AUC ={:.02f})'.format(auc))
+        plt.tight_layout()
+        plt.savefig(args.result_dir + "/result.png")
+        plt.show()
+
+
+
+
+def test (x_test, args):
+
+    n_classes = 2
+    n_features = x_test.shape[1]
+
+    x = tf.placeholder(tf.float32, [None, n_features * 1])
+    y = tf.placeholder(tf.float32, [None, n_classes * 1])
+    keep_prob = tf.placeholder(tf.float32)
+
+    x_input = tf.reshape(x, [-1, n_features, 1])
+
+    layer = model.network_binary(x_input,keep_prob,args)
+
+    with tf.Session() as sess:
+
+        sess.run(tf.group(tf.global_variables_initializer(), tf.local_variables_initializer()))
+        saver = tf.train.Saver()
+        saver.restore(sess, "./{}/model_binary.ckpt".format(args.model_dir))
+        outputs = sess.run(layer, feed_dict={x: x_test,keep_prob: 1})
+        np.savetxt(args.data_dir + '/y_prediction.txt', outputs)
 

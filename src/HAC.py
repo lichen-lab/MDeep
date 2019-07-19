@@ -1,7 +1,5 @@
 import numpy as np
 from scipy.cluster.hierarchy import dendrogram, linkage
-from matplotlib import pyplot as plt
-
 
 def hac(cor):
 
@@ -20,7 +18,8 @@ def hac(cor):
                 distance_sort='descending',
                 show_leaf_counts=True)
     indexes = result.get('ivl')
-
+    del result
+    del linked
     index =[]
     for i, itm in enumerate(indexes):
         index.append(int(itm))
