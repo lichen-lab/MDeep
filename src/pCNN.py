@@ -29,15 +29,15 @@ def main(args):
 
         if evaluation:
             print("Start evaluation")
-            x_test = np.load('./' + file + '/X_test.npy')
-            y_test = np.load('./' + file + '/Y_test.npy')
+            x_test = np.load('./' + file + '/X_eval.npy')
+            y_test = np.load('./' + file + '/Y_eval.npy')
             x_test = x_test[:, hac_index]
             y_test = y_test.reshape(y_test.shape[0],1)
             continous.eval(x_test,y_test, args)
 
         if testing:
             print("Start testing")
-            x_test = np.load('./' + file + '/X_test.npy')
+            x_test = np.load(args.test_file)
             x_test = x_test[:, hac_index]
             continous.test(x_test,args)
 
@@ -63,8 +63,8 @@ def main(args):
 
         if evaluation:
             print("Start evaluation")
-            x_test = np.load('./' + file + '/X_test.npy')
-            y_test = np.load('./' + file + '/Y_test.npy')
+            x_test = np.load('./' + file + '/X_eval.npy')
+            y_test = np.load('./' + file + '/Y_eval.npy')
             x_test = x_test[:, hac_index]
             y_te = []
             for l in y_test:
@@ -77,16 +77,11 @@ def main(args):
 
         if testing:
             print("Start testing")
-            x_test = np.load('./' + file + '/X_test.npy')
+            x_test = np.load(args.test_file)
             x_test = x_test[:, hac_index]
             binary.test(x_test,args)
 
 def parse_arguments(parser):
-    parser.add_argument('--data_dir', type=str, default='data/USA', metavar='<data_directory>',
-                        help='The data directory')
-
-    parser.add_argument('--model_dir', type=str, default='model',
-                        help='The directory to save or restore the trained models.')
 
     parser.add_argument('--train', dest='train', action='store_true', help='Use this option for train model')
     parser.set_defaults(train=False)
@@ -94,11 +89,19 @@ def parse_arguments(parser):
     parser.add_argument('--evaluation', dest='evaluation', action='store_true',help='Use this option for evaluate model')
     parser.set_defaults(evaluation=False)
 
-    parser.add_argument('--result_dir', type=str, default='result/USA', metavar='<data_directory>',
-                        help='The directory to save test / evaluation result')
-
     parser.add_argument('--test', dest='test', action='store_true', help='Use this option for test model')
     parser.set_defaults(test=False)
+
+    parser.add_argument('--data_dir', type=str, default='data/USA', metavar='<data_directory>',
+                        help='The data directory')
+
+    parser.add_argument('--test_file', type=str, default='data/USA/X_test.npy', help='The unlabelled test file')
+
+    parser.add_argument('--model_dir', type=str, default='model',
+                        help='The directory to save or restore the trained models.')
+
+    parser.add_argument('--result_dir', type=str, default='result/USA', metavar='<data_directory>',
+                        help='The directory to save test / evaluation result')
 
     parser.add_argument('--outcome_type', type=str, default='continous',
                         help='The outcome type')
