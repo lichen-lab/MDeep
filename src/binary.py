@@ -113,7 +113,7 @@ def eval (x_test, y_test, args):
         plt.ylabel('Sensitivity(True Positive Rate)')
         plt.title('Receiver Operating Characteristic (AUC ={:.02f})'.format(auc))
         plt.tight_layout()
-        plt.savefig(args.result_dir + "/result.png")
+        plt.savefig(args.result_dir + "/result.jpg")
         plt.show()
 
 

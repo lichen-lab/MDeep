@@ -76,18 +76,22 @@ optional arguments:
 
 ### USA Human Gut Microbiome data (Continous-Outcome)
 #### Train the model
+
 The USA Human Gut Microbiome data contains 308 samples with 1087 OTUs. For details of description, please check our paper
 ```
 python3 src/pCNN.py --data_dir data/USA --train --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
-
-#### Evaluate the pretrained model
+After training, the well-trained model will save to model directory.
+#### Evaluate the well-trained model
 
 ```
 python3 src/pCNN.py --data_dir data/USA --evaluation --result_dir result/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
 The program will draw a R-squared figure and save it to result directory
 
+<center>
+<div align=center><img width="400" height="300" src="https://github.com/alfredyewang/pCNN/blob/master/result/USA/result.jpg"/></div>
+</center>  
 
 
 #### Test the model with unlabelled data
@@ -95,6 +99,8 @@ The program will draw a R-squared figure and save it to result directory
 ```
 python3 src/pCNN.py --data_dir data/USA --test --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
+The program will save the prediction result to result directory.
+
 
 ### Malawiantwin pairs Human Gut Microbiome data (Binary-Outcome)
 #### Train the model
@@ -102,7 +108,19 @@ The USA Human Gut Microbiome data contains 995 samples with 2291 OTUs.
 ```
 python3 src/pCNN.py --data_dir data/Malawiantwin_pairs --train --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
 ```
-#### Test the model
+#### Evaluate the well-trained model
+
+```
+python3 src/pCNN.py --data_dir data/Malawiantwin_pairs --evaluation --result_dir result/Malawiantwin_pairs --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
+```
+The program will draw a ROC figure and save it to result directory
+
+<center>
+<div align=center><img width="400" height="300" src="https://github.com/alfredyewang/pCNN/blob/master/result/Malawiantwin_pairs/result.jpg"/></div>
+</center>  
+
+
+#### Test the model with unlabelled data
 ```
 python3 src/pCNN.py --data_dir data/Malawiantwin_pairs --test --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
 ```

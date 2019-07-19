@@ -109,7 +109,7 @@ def eval(x_test, y_test, args):
         plt.ylabel(r'Predicted Y')
         plt.title(r'Test result on Pretrained pCNN model ($R^2$ = {:.02f})'.format(cor_test[0, 1] ** 2))
         plt.tight_layout()
-        ax.figure.savefig( args.result_dir + "/result.png")
+        ax.figure.savefig( args.result_dir + "/result.jpg")
         plt.show()
 
 
