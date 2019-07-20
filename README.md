@@ -85,7 +85,7 @@ optional arguments:
 ### USA Human Gut Microbiome data (Continous-Outcome)
 #### Train the model
 
-The USA Human Gut Microbiome data contains 308 samples with 1087 OTUs. For details of description, please check our paper
+The USA Human Gut Microbiome data contains 308 samples with 1087 OTUs. For details of description, please check our paper.
 ```
 python3 src/pCNN.py --train --data_dir data/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
