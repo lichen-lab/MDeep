@@ -1,2 +1,2 @@
-model_checkpoint_path: "model_continous.ckpt"
-all_model_checkpoint_paths: "model_continous.ckpt"
+model_checkpoint_path: "model_binary.ckpt"
+all_model_checkpoint_paths: "model_binary.ckpt"

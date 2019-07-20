@@ -35,10 +35,11 @@ You can see the hyper paramenters for pCNN by help option:
 ```
 usage: pCNN.py [-h] [--train] [--evaluation] [--test]
                [--data_dir <data_directory>] [--test_file TEST_FILE]
-               [--model_dir MODEL_DIR] [--result_dir <data_directory>]
-               [--outcome_type OUTCOME_TYPE] [--batch_size BATCH_SIZE]
-               [--max_epoch MAX_EPOCH] [--learning_rate LEARNING_RATE]
-               [--dropout_rate DROPOUT_RATE] [--L2_regularizer L2_REGULARIZER]
+               [--correlation_file CORRELATION_FILE] [--model_dir MODEL_DIR]
+               [--result_dir <data_directory>] [--outcome_type OUTCOME_TYPE]
+               [--batch_size BATCH_SIZE] [--max_epoch MAX_EPOCH]
+               [--learning_rate LEARNING_RATE] [--dropout_rate DROPOUT_RATE]
+               [--L2_regularizer L2_REGULARIZER]
                [--window_size WINDOW_SIZE [WINDOW_SIZE ...]]
                [--kernel_size KERNEL_SIZE [KERNEL_SIZE ...]]
                [--strides STRIDES [STRIDES ...]]
@@ -52,9 +53,11 @@ optional arguments:
   --evaluation          Use this option for evaluate model
   --test                Use this option for test model
   --data_dir <data_directory>
-                        The data directory
+                        The data directory for training and evaluation
   --test_file TEST_FILE
                         The unlabelled test file
+  --correlation_file CORRELATION_FILE
+                        The correlation matrix for unlabelled test file
   --model_dir MODEL_DIR
                         The directory to save or restore the trained models.
   --result_dir <data_directory>
@@ -105,7 +108,7 @@ The program will evaluate the well-trained model, draw a R-squared figure, and s
 #### Test the model with unlabelled data
 
 ```
-python3 src/pCNN.py --test --test_file data/USA/X_test.npy --result_dir result/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
+python3 src/pCNN.py --test --test_file data/USA/X_test.npy  --correlation_file data/USA/c.npy --result_dir result/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
 The program will take the unlabelled test file and save the prediction result to result directory.
 
@@ -129,5 +132,5 @@ The program will draw a ROC figure and save it to result directory.
 
 #### Test the model with unlabelled data
 ```
-python3 src/pCNN.py --test --test_file data/Malawiantwin_pairs/X_test.npy --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
+python3 src/pCNN.py --test --test_file data/Malawiantwin_pairs/X_test.npy --correlation_file data/Malawiantwin_pairs/c.npy --result_dir result/Malawiantwin_pairs --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
 ```

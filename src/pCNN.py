@@ -7,18 +7,20 @@ import argparse
 
 def main(args):
 
-    file = args.data_dir
+
     training = args.train
     testing = args.test
     evaluation = args.evaluation
-    C = np.load('./' + file + '/c.npy')
-    print("Hierarchical clustering")
-    hac_index = HAC.hac(C)
+
 
     if args.outcome_type == 'continous':
         import continous
 
         if training:
+            file = args.data_dir
+            C = np.load('./' + file + '/c.npy')
+            print("Hierarchical clustering")
+            hac_index = HAC.hac(C)
             print("Start training")
             x_train = np.load('./' + file + '/X_train.npy')
             y_train = np.load('./' + file + '/Y_train.npy')
@@ -28,6 +30,10 @@ def main(args):
             continous.train(x_train, y_train, args)
 
         if evaluation:
+            file = args.data_dir
+            C = np.load('./' + file + '/c.npy')
+            print("Hierarchical clustering")
+            hac_index = HAC.hac(C)
             print("Start evaluation")
             x_test = np.load('./' + file + '/X_eval.npy')
             y_test = np.load('./' + file + '/Y_eval.npy')
@@ -36,6 +42,9 @@ def main(args):
             continous.eval(x_test,y_test, args)
 
         if testing:
+            C = np.load(args.correlation_file)
+            print("Hierarchical clustering")
+            hac_index = HAC.hac(C)
             print("Start testing")
             x_test = np.load(args.test_file)
             x_test = x_test[:, hac_index]
@@ -45,6 +54,10 @@ def main(args):
         import binary
 
         if training:
+            file = args.data_dir
+            C = np.load('./' + file + '/c.npy')
+            print("Hierarchical clustering")
+            hac_index = HAC.hac(C)
             print("Start training")
             x_train = np.load('./' + file + '/X_train.npy')
             y_train = np.load('./' + file + '/Y_train.npy')
@@ -62,6 +75,10 @@ def main(args):
             binary.train(x_train, y_tr, args)
 
         if evaluation:
+            file = args.data_dir
+            C = np.load('./' + file + '/c.npy')
+            print("Hierarchical clustering")
+            hac_index = HAC.hac(C)
             print("Start evaluation")
             x_test = np.load('./' + file + '/X_eval.npy')
             y_test = np.load('./' + file + '/Y_eval.npy')
@@ -76,6 +93,9 @@ def main(args):
             binary.eval(x_test,y_te, args)
 
         if testing:
+            C = np.load(args.correlation_file)
+            print("Hierarchical clustering")
+            hac_index = HAC.hac(C)
             print("Start testing")
             x_test = np.load(args.test_file)
             x_test = x_test[:, hac_index]
@@ -93,9 +113,11 @@ def parse_arguments(parser):
     parser.set_defaults(test=False)
 
     parser.add_argument('--data_dir', type=str, default='data/USA', metavar='<data_directory>',
-                        help='The data directory')
+                        help='The data directory for training and evaluation')
 
     parser.add_argument('--test_file', type=str, default='data/USA/X_test.npy', help='The unlabelled test file')
+
+    parser.add_argument('--correlation_file', type=str, default='data/USA/c.npy', help='The correlation matrix for unlabelled test file')
 
     parser.add_argument('--model_dir', type=str, default='model',
                         help='The directory to save or restore the trained models.')
@@ -139,5 +161,4 @@ if __name__ == '__main__':
         description='A Phylogeny-regularized Convolutional NeuralNetwork for Microbiome-based Predictions')
 
     args = parse_arguments(parser)
-    print(args)
     main(args)

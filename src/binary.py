@@ -123,7 +123,7 @@ def test (x_test, args):
 
     n_classes = 2
     n_features = x_test.shape[1]
-
+    print(x_test.shape)
     x = tf.placeholder(tf.float32, [None, n_features * 1])
     y = tf.placeholder(tf.float32, [None, n_classes * 1])
     keep_prob = tf.placeholder(tf.float32)
@@ -138,5 +138,6 @@ def test (x_test, args):
         saver = tf.train.Saver()
         saver.restore(sess, "./{}/model_binary.ckpt".format(args.model_dir))
         outputs = sess.run(layer, feed_dict={x: x_test,keep_prob: 1})
-        np.savetxt(args.data_dir + '/y_prediction.txt', outputs)
+        np.savetxt(args.result_dir + '/y_prediction.txt', outputs)
+        print('Prediction.txt is saved in {}'.format(args.result_dir))
 

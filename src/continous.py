@@ -134,4 +134,5 @@ def test(x_test, args):
         saver = tf.train.Saver()
         saver.restore(sess,  "./{}/model_continous.ckpt".format(args.model_dir))
         outputs = sess.run(layer, feed_dict={x: x_test, keep_prob: 1})
-        np.savetxt(args.data_dir + '/y_prediction.txt', outputs)
+        np.savetxt(args.result_dir + '/y_prediction.txt', outputs)
+        print('Prediction.txt is saved in {}'.format(args.result_dir))
