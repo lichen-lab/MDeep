@@ -159,6 +159,5 @@ def parse_arguments(parser):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='A Phylogeny-regularized Convolutional NeuralNetwork for Microbiome-based Predictions')
-
     args = parse_arguments(parser)
     main(args)
