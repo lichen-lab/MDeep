@@ -141,7 +141,7 @@ def parse_arguments(parser):
                         help='The dropout rate for training')
 
     parser.add_argument('--L2_regularizer', type=float, default=0.05,
-                        help='The L2 lambda')
+                        help='The L2 regularizer lambda')
 
     parser.add_argument('--window_size', nargs='+' ,type=int, default=[8,8,8],
                         help='The window size for convolutional layers')
