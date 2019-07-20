@@ -113,7 +113,7 @@ python3 src/pCNN.py --test --test_file data/USA/X_test.npy  --correlation_file d
 The program will take the unlabelled test file and save the prediction result to result directory.
 
 
-### Malawiantwin pairs Human Gut Microbiome data (Binary-Outcome)
+### Malawian Twin pairs Human Gut Microbiome data (Binary-Outcome)
 #### Train the model
 The USA Human Gut Microbiome data contains 995 samples with 2291 OTUs.
 ```
