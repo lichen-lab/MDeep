@@ -18,6 +18,8 @@ pCNN is implemented by TensorFlow. Both CPU and GPU mode are supported. Please c
 - numpy >= 1.15.4
 - scipy >= 1.2.1
 - scikit-learn >= 0.20.3
+- seaborn >=0.9.0
+- matplotlib >=3.1.0
 
 Download pCNN:
 ```
