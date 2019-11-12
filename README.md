@@ -1,17 +1,16 @@
-## Microbiome based deep learning method forpredicting continuous and binary outcome
-We develop a deep learning prediction method "Phylogeny-regularized convolutional Neural Network,"(pCNN) for microbiome-based prediction. The advantage of pCNN is that it uses the convolutional kernel to capture the signals of microbiome species with close evolutionary relationship in a local receptive field. Moreover, pCNN uses different convolutional layer to capture different taxonomic rank (e.g. species, genus, family, etc). Together, the convolutional layers with its built-in convolutional kernels capture microbiome signals at different taxonomic levels while encouraging local smoothing induced by the phylogenetic tree.
+## Microbiome based deep learning method for predicting continuous and binary outcome
+We develop a deep learning prediction method "Microbimoe Based Deep Learning Method,"(MDeep) for microbiome-based prediction. The advantage of MDeep is that it uses the convolutional kernel to capture the signals of microbiome species with close evolutionary relationship in a local receptive field. Moreover, MDeep uses different convolutional layer to capture different taxonomic rank (e.g. species, genus, family, etc). Together, the convolutional layers with its built-in convolutional kernels capture microbiome signals at different taxonomic levels while encouraging local smoothing induced by the phylogenetic tree.
 
 <center>
 
 <div align=center><img width="600" height="400" src="https://raw.githubusercontent.com/alfredyewang/pCNN/master/docs/Architecture.jpg"/></div>
 </center>  
 
-For details of pCNN, users can refer to our paper "**A Phylogeny-regularized Convolutional NeuralNetwork for Microbiome-based Predictionsn**".
 
 
 ## Requirements and Installation
 
-pCNN is implemented by TensorFlow. Both CPU and GPU mode are supported. Please check the guide on official website for detail instruction of installing TensorFlow-GPU.
+MDeep is implemented by TensorFlow. Both CPU and GPU mode are supported. Please check the guide on official website for detail instruction of installing TensorFlow-GPU.
 
 - Python 3.6
 - TensorFlow == 1.12.0
@@ -23,7 +22,7 @@ pCNN is implemented by TensorFlow. Both CPU and GPU mode are supported. Please c
 
 Download pCNN:
 ```
-git clone https://github.com/alfredyewang/pCNN
+git clone https://github.com/alfredyewang/MDeep
 ```
 Install requirements
 ```
