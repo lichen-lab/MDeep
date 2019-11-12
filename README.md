@@ -29,7 +29,7 @@ Install requirements
 pip3 install -r requirements.txt
 ```
 ## Usage
-You can see the hyper paramenters for pCNN by help option:
+You can see the hyper paramenters for MDeep by help option:
 
 ```
 usage: pCNN.py [-h] [--train] [--evaluation] [--test]
@@ -100,7 +100,7 @@ python3 src/pCNN.py --evaluation --data_dir data/USA --result_dir result/USA --m
 The program will evaluate the well-trained model, draw a R-squared figure, and save it to result directory.
 
 <center>
-<div align=center><img width="400" height="300" src="https://github.com/alfredyewang/pCNN/blob/master/result/USA/result.jpg"/></div>
+<div align=center><img width="400" height="300" src="https://github.com/alfredyewang/MDeep/blob/master/result/USA/result.jpg"/></div>
 </center>  
 
 
