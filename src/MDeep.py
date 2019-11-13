@@ -158,6 +158,6 @@ def parse_arguments(parser):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='A Phylogeny-regularized Convolutional NeuralNetwork for Microbiome-based Predictions')
+        description=' Microbiome based deep learning method for predicting continuous and binary outcome')
     args = parse_arguments(parser)
     main(args)

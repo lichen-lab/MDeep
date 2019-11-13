@@ -107,7 +107,7 @@ def eval(x_test, y_test, args):
         plt.plot(x_line, x_line)
         plt.xlabel('Y')
         plt.ylabel(r'Predicted Y')
-        plt.title(r'Test result on Pretrained pCNN model ($R^2$ = {:.02f})'.format(cor_test[0, 1] ** 2))
+        plt.title(r'Test result on Pretrained MDeep model ($R^2$ = {:.02f})'.format(cor_test[0, 1] ** 2))
         plt.tight_layout()
         ax.figure.savefig( args.result_dir + "/result.jpg")
         plt.show()

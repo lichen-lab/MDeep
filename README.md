@@ -3,7 +3,7 @@ We develop a deep learning prediction method "Microbimoe Based Deep Learning Met
 
 <center>
 
-<div align=center><img width="600" height="400" src="https://raw.githubusercontent.com/alfredyewang/pCNN/master/docs/Architecture.jpg"/></div>
+<div align=center><img width="600" height="400" src="https://raw.githubusercontent.com/alfredyewang/MDeep/master/docs/Architecture.jpg"/></div>
 </center>  
 
 
@@ -20,7 +20,7 @@ MDeep is implemented by TensorFlow. Both CPU and GPU mode are supported. Please 
 - seaborn >=0.9.0
 - matplotlib >=3.1.0
 
-Download pCNN:
+Download MDeep:
 ```
 git clone https://github.com/alfredyewang/MDeep
 ```
@@ -32,7 +32,7 @@ pip3 install -r requirements.txt
 You can see the hyper paramenters for MDeep by help option:
 
 ```
-usage: pCNN.py [-h] [--train] [--evaluation] [--test]
+usage: MDeep.py [-h] [--train] [--evaluation] [--test]
                [--data_dir <data_directory>] [--test_file TEST_FILE]
                [--correlation_file CORRELATION_FILE] [--model_dir MODEL_DIR]
                [--result_dir <data_directory>] [--outcome_type OUTCOME_TYPE]
@@ -89,13 +89,13 @@ optional arguments:
 
 The USA Human Gut Microbiome data contains 308 samples with 1087 OTUs. For details of description, please check our paper.
 ```
-python3 src/pCNN.py --train --data_dir data/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
+python3 src/MDeep.py --train --data_dir data/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
 After training, the well-trained model will be saved to model directory.
 #### Evaluate the well-trained model
 
 ```
-python3 src/pCNN.py --evaluation --data_dir data/USA --result_dir result/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
+python3 src/MDeep.py --evaluation --data_dir data/USA --result_dir result/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
 The program will evaluate the well-trained model, draw a R-squared figure, and save it to result directory.
 
@@ -107,7 +107,7 @@ The program will evaluate the well-trained model, draw a R-squared figure, and s
 #### Test the model with unlabelled data
 
 ```
-python3 src/pCNN.py --test --test_file data/USA/X_test.npy  --correlation_file data/USA/c.npy --result_dir result/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
+python3 src/MDeep.py --test --test_file data/USA/X_test.npy  --correlation_file data/USA/c.npy --result_dir result/USA --model_dir model --outcome_type continous --batch_size 16 --max_epoch 2000 --learning_rate 5e-3 --dropout_rate 0.5 --window_size 8 8 8 --kernel_size 64 64 32 --strides 4 4 4
 ```
 The program will take the unlabelled test file and save the prediction result to result directory.
 
@@ -116,20 +116,20 @@ The program will take the unlabelled test file and save the prediction result to
 #### Train the model
 The USA Human Gut Microbiome data contains 995 samples with 2291 OTUs.
 ```
-python3 src/pCNN.py --train --data_dir data/Malawiantwin_pairs --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
+python3 src/MDeep.py --train --data_dir data/Malawiantwin_pairs --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
 ```
 #### Evaluate the well-trained model
 
 ```
-python3 src/pCNN.py --evaluation --data_dir data/Malawiantwin_pairs --result_dir result/Malawiantwin_pairs --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
+python3 src/MDeep.py --evaluation --data_dir data/Malawiantwin_pairs --result_dir result/Malawiantwin_pairs --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
 ```
 The program will draw a ROC figure and save it to result directory.
 
 <center>
-<div align=center><img width="400" height="300" src="https://github.com/alfredyewang/pCNN/blob/master/result/Malawiantwin_pairs/result.jpg"/></div>
+<div align=center><img width="400" height="300" src="https://github.com/alfredyewang/MDeep/blob/master/result/Malawiantwin_pairs/result.jpg"/></div>
 </center>  
 
 #### Test the model with unlabelled data
 ```
-python3 src/pCNN.py --test --test_file data/Malawiantwin_pairs/X_test.npy --correlation_file data/Malawiantwin_pairs/c.npy --result_dir result/Malawiantwin_pairs --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
+python3 src/MDeep.py --test --test_file data/Malawiantwin_pairs/X_test.npy --correlation_file data/Malawiantwin_pairs/c.npy --result_dir result/Malawiantwin_pairs --model_dir model --outcome_type binary --batch_size 32 --max_epoch 500 --learning_rate 1e-4 --dropout_rate 0.5 --window_size 128 4 --kernel_size 32 32 --strides 64 2
 ```
